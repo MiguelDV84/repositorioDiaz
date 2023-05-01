@@ -1,0 +1,75 @@
+.login__container-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17rem;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: white;
+}
+
+.login_container-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.login__container-title {
+  text-align: center;
+  width: auto;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login__container-main h3 {
+  text-align: center;
+  width: auto;
+  margin: 10px 0;
+  padding: 10px;
+  outline: none;
+}
+
+.login__container-btn {
+  text-align: center;
+  width: auto;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login__container-btn button{
+  background-color: #4567ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login__container-btn button:hover{
+  background-color: #00aeff;
+}
+
+.login__container-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: auto;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login__container-error{
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}

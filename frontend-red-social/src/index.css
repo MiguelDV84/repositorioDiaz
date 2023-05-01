@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap");
+
+
+body {
+  font-family: "Roboto Mono", monospace;
+  background: rgb(255, 127, 218);
+  background: linear-gradient(
+    171deg,
+    rgba(255, 127, 218, 1) 0%,
+    rgba(132, 132, 255, 1) 52%,
+    rgba(0, 212, 255, 1) 66%,
+    rgba(0, 212, 255, 1) 88%
+  );
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
