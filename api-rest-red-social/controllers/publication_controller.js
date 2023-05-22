@@ -201,7 +201,7 @@ const feed = async (req, res) => {
   //Controlar pagina
   let page = 1;
   if (req.params.page) page = req.params.page;
-  const itemsPerPage = 5;
+  const itemsPerPage = 999;
 
   try {
     //Sacar un array de indentificadores de usuarios que yo sigo

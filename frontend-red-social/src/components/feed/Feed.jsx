@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ImagePubli from "../utils/Image/ImagePubli";
 import ImageUser from "../utils/Image/ImageUser";
+import FavIcon from "@mui/icons-material/FavoriteBorder";
+import CommentIcon from "@mui/icons-material/MapsUgcRounded";
 import "./Feed.css";
 
 export default function Feed() {
@@ -43,9 +45,11 @@ export default function Feed() {
                 <h4> {item.user.nick}</h4>
               </div>
               <section>
-                {/* Utiliza el componente ImageComponent para renderizar la imagen */}
                 <div className="feed__container--image">
                   <ImagePubli imageName={item.file} />
+                </div>
+                <div className="feed__container--icons">
+                  <FavIcon /> <CommentIcon />
                 </div>
                 <p>{item.text}</p>
               </section>
