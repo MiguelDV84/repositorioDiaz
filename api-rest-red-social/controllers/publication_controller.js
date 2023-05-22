@@ -17,25 +17,30 @@ const testPubli = (req, res) => {
 
 //Guarcadar publicacion
 const save = (req, res) => {
-  //Recoger datos de la request
+  // Recoger datos de la request
   const params = req.body;
 
-  //Si no llega dar respuesta negativa
+  // Si no llega dar respuesta negativa
   if (!params.text)
     return res
       .status(400)
       .send({ status: "error", message: "Debes enviar un texto" });
 
-  //Crear objeto con modelo publication
+  // Crear objeto con modelo publication
   let newPublication = new Publication(params);
   newPublication.user = req.user.id;
 
-  //Guardar el objeto en bdd
+  // Verificar si se adjuntó un archivo
+  if (req.file) {
+    newPublication.file = req.file.filename;
+  }
+
+  // Guardar el objeto en la base de datos
   newPublication.save((error, publicationStored) => {
     if (error || !publicationStored)
       return res
         .status(400)
-        .send({ status: "error", message: "No se ha guardado la publicacion" });
+        .send({ status: "error", message: "No se ha guardado la publicación" });
 
     return res.status(200).send({
       status: "success",
@@ -44,6 +49,7 @@ const save = (req, res) => {
     });
   });
 };
+
 
 //Sacar una publicacion
 const getPubli = (req, res) => {
@@ -117,7 +123,7 @@ const getPublicationsUser = (req, res) => {
 //Listar publicaciones de usuarios que sigo
 
 //Subir ficheros
-const upload = (req, res) => {
+/* const upload = (req, res) => {
   //Sacar publication id
   const publicationId = req.params.id;
   //Recoger el fichero de imagen y comprogbar que existe
@@ -168,7 +174,7 @@ const upload = (req, res) => {
       });
     }
   );
-};
+}; */
 
 //Devolver archivos multimedia
 const media = (req, res) => {
