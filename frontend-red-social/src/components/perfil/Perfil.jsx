@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import profile from "../../../src/assets/image/profile/default.png";
+import ImageUser from "../utils/Image/ImageUser";
+import './Perfil.css';
 
 export default function Perfil() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -20,6 +21,7 @@ export default function Perfil() {
           console.log(data);
           setImage(data.user.image);
           setUser(data.user);
+          console.log(data.user);
         } catch (error) {
           console.log(error);
         }
@@ -37,13 +39,7 @@ export default function Perfil() {
     <div className="profile">
       <h1>Perfil</h1>
       <div className="profile__container">
-        <div className="profile__container-img">
-          <img
-            src={`../../../../api-rest-red-social/uploads/avatars/${profile}`}
-            alt="avatar"
-          />
-          <h3>{user.nick}</h3>
-        </div>
+          <ImageUser imageName={user.image} />
       </div>
     </div>
   );
