@@ -152,7 +152,7 @@ const getUser = (req, res) => {
 
   //Comprobar si el usuario existe
   User.findById(userId)
-    .select({ password: 0, role: 0 })
+    .select("-password -role -email -__v")
     .exec(async (error, user) => {
       if (error || !user) {
         return res.status(404).send({

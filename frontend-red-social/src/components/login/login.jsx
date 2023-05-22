@@ -1,35 +1,34 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "./login.css";
-import { TokenContext } from "../../customHook/TokenContext";
-import useLocalStorage from "../../customHook/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [message, setMessage] = useState();
-  const [token, setToken] = useLocalStorage("token");
+  const [user, setUser] = useState([]);
   const API = "http://localhost:3001/api/user/login";
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        API,
-        JSON.stringify({ email: email, password: password }),
-        {
+      await axios
+        .post(API, JSON.stringify({ email: email, password: password }), {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
-      );
-      setToken(response.data.token);
-      /*  debugger; */
+        })
+        .then((response) => {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("token", JSON.stringify(response.data.token));
+          setUser(localStorage.getItem('user'))
+          navigate('/feed');
+        });
     } catch (error) {
       if (!error.response) {
-        console.log(error.message);
         setMessage(error.response.data.message);
       } else {
-        console.log(error.response.data.message);
         setMessage(error.response.data.message);
       }
     }

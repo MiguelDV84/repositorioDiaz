@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useLocalStorage from "../../customHook/useLocalStorage";
+import "./Feed.css";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState();
   const API = "http://localhost:3001/api/publi/feed";
-  const [token, setToken] = useLocalStorage("token");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     const getPosts = async () => {
@@ -30,21 +30,24 @@ export default function Feed() {
     };
     getPosts();
   }, [token]);
-
   return (
     <div className="feed__container-main">
-      <h3>Feed</h3>
-      {posts.length > 0 ? (
-        <div className="feed__post-list">
-          {posts.map((post) => (
-            <div key={post._id}>
-              <p>{post.text}</p>
+      {token ? (
+        <div>
+          <h3>Feed</h3>
+          {posts.length > 0 ? (
+            <div className="feed__post-list">
+              {posts.map((post) => (
+                <div key={post._id}>
+                  <p>{post.text}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            <p>No hay publicaciones en el feed.</p>
+          )}
         </div>
-      ) : (
-        <p>No hay publicaciones en el feed.</p>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -12,11 +12,6 @@
   background-color: white;
 }
 
-.login_container-form {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 
 .login__container-title {
   text-align: center;
