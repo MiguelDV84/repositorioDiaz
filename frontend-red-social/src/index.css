@@ -3,14 +3,14 @@
 
 body {
   font-family: "Roboto Mono", monospace;
-  background: rgb(255, 127, 218);
+  /* background: rgb(255, 127, 218);
   background: linear-gradient(
     171deg,
     rgba(255, 127, 218, 1) 0%,
     rgba(132, 132, 255, 1) 52%,
     rgba(0, 212, 255, 1) 66%,
     rgba(0, 212, 255, 1) 88%
-  );
+  ); */
 }
 
 code {

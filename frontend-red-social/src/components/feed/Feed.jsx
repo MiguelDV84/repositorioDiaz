@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ImagePubli from "../utils/Image/ImagePubli";
+import ImageUser from "../utils/Image/ImageUser";
 import "./Feed.css";
 
 export default function Feed() {
@@ -31,23 +33,31 @@ export default function Feed() {
     getPosts();
   }, [token]);
   return (
-    <div className="feed__container-main">
-      {token ? (
-        <div>
-          <h3>Feed</h3>
-          {posts.length > 0 ? (
-            <div className="feed__post-list">
-              {posts.map((post) => (
-                <div key={post._id}>
-                  <p>{post.text}</p>
+    <div className="feed__container--main">
+      {posts.length > 0 ? (
+        posts.map((item, i) => (
+          <article key={i}>
+            <header className="feed__header--user">
+              <div className="feed__section--user">
+                <ImageUser imageName={item.user.image} />
+                <h4> {item.user.nick}</h4>
+              </div>
+              <section>
+                {/* Utiliza el componente ImageComponent para renderizar la imagen */}
+                <div className="feed__container--image">
+                  <ImagePubli imageName={item.file} />
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p>No hay publicaciones en el feed.</p>
-          )}
-        </div>
-      ) : null}
+                <p>{item.text}</p>
+              </section>
+              <footer>
+                <p>{item.created_at}</p>
+              </footer>
+            </header>
+          </article>
+        ))
+      ) : (
+        <p>No hay publicaciones en el feed.</p>
+      )}
     </div>
   );
 }

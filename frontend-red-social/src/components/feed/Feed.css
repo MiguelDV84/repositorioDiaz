@@ -1,9 +1,42 @@
-.feed__container-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    height: calc(100vh - 100px);
-  }
-  
+.feed__container--main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  height: calc(100vh - 100px);
+}
+
+.feed__section--user {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: .5rem;
+  margin: 0;
+}
+
+.user__image {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feed__container--image {
+  width: 100%;
+  max-width: 600px; /* Ajusta el tamaño máximo deseado para la imagen */
+  margin: 0 auto;
+}
+
+.feed__container--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

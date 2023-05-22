@@ -239,7 +239,7 @@ module.exports = {
   getPubli,
   remove,
   getPublicationsUser,
-  upload,
+  /* upload, */
   media,
   feed,
 };
