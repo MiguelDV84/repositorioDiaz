@@ -11,6 +11,9 @@ body {
     rgba(0, 212, 255, 1) 66%,
     rgba(0, 212, 255, 1) 88%
   ); */
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box;
 }
 
 code {
