@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
+  width: auto;
   height: calc(100vh - 100px);
 }
 
