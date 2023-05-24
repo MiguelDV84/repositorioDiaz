@@ -42,7 +42,9 @@ export default function Feed() {
           <article key={i}>
             <header className="feed__header--user">
               <div className="feed__section--user">
-                <ImageUser imageName={item.user.image} />
+                <div className="user__image">
+                  <ImageUser imageName={item.user.image} />
+                </div>
                 <h4> {item.user.nick}</h4>
               </div>
               <ListIcon />

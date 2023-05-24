@@ -5,7 +5,9 @@ export default function Image({ imageName }) {
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const imageModule = await import(`../../../../../api-rest-red-social/uploads/avatars/${imageName}`);
+        const imageModule = await import(
+          `../../../../../api-rest-red-social/uploads/avatars/${imageName}`
+        );
         setImageSrc(imageModule.default);
       } catch (error) {
         console.log(error);
@@ -19,5 +21,6 @@ export default function Image({ imageName }) {
     return <p>Cargando imagen...</p>;
   }
 
-  return <div className="user__image"><img src={imageSrc} alt="Imagen dinámica" /></div>;
+  return <img src={imageSrc} alt="Imagen dinámica" />
+  
 }

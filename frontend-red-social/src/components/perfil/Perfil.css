@@ -1,4 +1,52 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.profile__image {
+  width: 68px;
+  height: 68px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile__container--statistics {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.container__statistics--posts {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.profile__container--info{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    margin-top: 8px;
+    font-size: 14px;
+    border-top: 1px solid black;
+    gap: 5px;
+}
+
+.profile__container--info h4 {
+    margin: 0;
 }

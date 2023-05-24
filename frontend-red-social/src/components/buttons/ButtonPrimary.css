@@ -1,0 +1,17 @@
+.button__primary{
+    all:unset;
+}
+
+.button__primary{
+    border: 1px solid black;
+    border-radius: 11px ;
+    background-color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 2px;
+    
+}
+
+.button__primary span {
+    margin: 6px;
+}
