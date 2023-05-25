@@ -43,27 +43,50 @@ const like = (req, res) => {
 };
 
 const dislike = (req, res) => {
-    // Recoger ID de la publicación de la URL
-    const publicationId = req.params.publicationId;
-  
-    // Buscar y eliminar el like basado en el ID de la publicación
-    Like.findOneAndDelete({ publication: publicationId }, (error, deletedLike) => {
+  // Recoger ID de la publicación de la URL
+  const publicationId = req.params.publicationId;
+
+  // Buscar y eliminar el like basado en el ID de la publicación
+  Like.findOneAndDelete(
+    { publication: publicationId },
+    (error, deletedLike) => {
       if (error || !deletedLike) {
         return res.status(500).send({
           status: "error",
           message: "No se ha podido eliminar el like",
         });
       }
-  
+
       return res.status(200).send({
         status: "success",
         message: "Like eliminado correctamente",
       });
+    }
+  );
+};
+
+const countLikes = (req, res) => {
+  // Recoger ID de la publicación de la URL
+  const publicationId = req.params.publicationId;
+
+  // Contar los likes de la publicación
+  Like.countDocuments({ publication: publicationId }, (error, likeCount) => {
+    if (error) {
+      return res.status(500).send({
+        status: "error",
+        message: "Error al contar los likes de la publicación",
+      });
+    }
+
+    return res.status(200).send({
+      status: "success",
+      count: likeCount,
     });
-  };
-  
+  });
+};
 
 module.exports = {
   like,
   dislike,
+  countLikes
 };
