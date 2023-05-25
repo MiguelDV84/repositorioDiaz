@@ -15,10 +15,12 @@ const app = express();
 const PORT = 3001;
 
 //Configurar cors
-app.use(cors({
+app.use(
+  cors({
     origin: true,
     credentials: true,
-}));
+  })
+);
 
 //Convertir los datos del body a objetos json
 app.use(express.json());
@@ -29,19 +31,20 @@ app.use(express.urlencoded({ extended: true }));
 const userRoutes = require("./routes/user_routes");
 const followRoutes = require("./routes/follow_routes");
 const publicationRoutes = require("./routes/publication_routes");
+const likeRoutes = require("./routes/like_routes");
 
 app.use("/api/user/", userRoutes);
 app.use("/api/follow/", followRoutes);
 app.use("/api/publi/", publicationRoutes);
+app.use("api/like/", likeRoutes);
 
 // ruta prueba
 
-
 //Lanzar servidor a escuchar peticiones http
-app.listen(PORT,(err)=>{
-    if(err){
-        console.log("Error al iniciar el servidor");
-    }else{
-        console.log("Servidor escuchando en el puerto: "+PORT);
-    }
-})
+app.listen(PORT, (err) => {
+  if (err) {
+    console.log("Error al iniciar el servidor");
+  } else {
+    console.log("Servidor escuchando en el puerto: " + PORT);
+  }
+});
