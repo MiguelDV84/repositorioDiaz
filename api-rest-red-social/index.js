@@ -36,9 +36,8 @@ const likeRoutes = require("./routes/like_routes");
 app.use("/api/user/", userRoutes);
 app.use("/api/follow/", followRoutes);
 app.use("/api/publi/", publicationRoutes);
-app.use("api/like/", likeRoutes);
+app.use("/api/like/", likeRoutes);
 
-// ruta prueba
 
 //Lanzar servidor a escuchar peticiones http
 app.listen(PORT, (err) => {

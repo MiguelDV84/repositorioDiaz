@@ -3,11 +3,11 @@ const {Schema, model} = require('mongoose')
 const LikeSchema = Schema ({
     user: {
         type: Schema.ObjectId,
-        ref: 'User'
+        ref: 'User',
     },
     publication: {
         type: Schema.ObjectId,
-        ref: 'Publication'
+        ref: 'Publication',
     },
     created_at: {
         type: Date,
