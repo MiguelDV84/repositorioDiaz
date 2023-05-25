@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export function useFetch({ api, token }) {
   const [data, setData] = useState();
@@ -7,14 +8,13 @@ export function useFetch({ api, token }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(api, {
+        const response = await axios.get(api, {
           headers: {
             Authorization: token,
           },
         });
-        const jsonData = await response.json();
-        setData(jsonData);
-        console.log(jsonData);
+        setData(response.data);
+        console.log(response.data);
       } catch (error) {
         setError(error);
         console.log(error);

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useFetch } from "../../customHook/useFetch";
 
 import ImageUser from "../utils/Image/ImageUser";
@@ -22,7 +23,6 @@ export default function Perfil() {
 
   console.log(user);
 
-  
   return (
     <div className="profile">
       <div className="profile__container">
@@ -36,11 +36,15 @@ export default function Perfil() {
             <span>PUBLICACIONES</span>
           </div>
           <div className="container__statistics--posts">
-            <span>{errorFollowings ? "N/A" : followings?.total}</span>
+            <Link to="/">
+              <span>{errorFollowings ? "N/A" : followings?.total}</span>
+            </Link>
             <span>SEGUIDOS</span>
           </div>
           <div className="container__statistics--posts">
-            <span>{errorFollowers ? "N/A" : followers?.total}</span>
+            <Link to="/">
+              <span>{errorFollowers ? "N/A" : followers?.total}</span>
+            </Link>
             <span>SEGUIDORES</span>
           </div>
         </div>
