@@ -36,13 +36,13 @@ export default function Perfil() {
             <span>PUBLICACIONES</span>
           </div>
           <div className="container__statistics--posts">
-            <Link to="/">
+            <Link to="/seguidos">
               <span>{errorFollowings ? "N/A" : followings?.total}</span>
             </Link>
             <span>SEGUIDOS</span>
           </div>
           <div className="container__statistics--posts">
-            <Link to="/">
+            <Link to="/seguidores">
               <span>{errorFollowers ? "N/A" : followers?.total}</span>
             </Link>
             <span>SEGUIDORES</span>

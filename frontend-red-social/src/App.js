@@ -4,7 +4,7 @@ import Login from "./components/login/login";
 import Feed from "./components/feed/Feed";
 import Menu from "./components/menu/Menu";
 import Perfil from "./components/perfil/Perfil";
-
+import Followings from "./components/Followings/Followings";
 import "./App.css";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 
@@ -23,6 +23,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/seguidos" element={<Followings />} />
         </Routes>
       </div>
     </Router>
