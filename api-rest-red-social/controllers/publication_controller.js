@@ -28,7 +28,8 @@ const save = (req, res) => {
 
   // Crear objeto con modelo publication
   let newPublication = new Publication(params);
-  newPublication.user = req.user.id;
+  console.log(req.params.id)
+  newPublication.user = req.params.id;
 
   // Verificar si se adjuntó un archivo
   if (req.file) {
@@ -37,11 +38,12 @@ const save = (req, res) => {
 
   // Guardar el objeto en la base de datos
   newPublication.save((error, publicationStored) => {
-    if (error || !publicationStored)
+    console.log(error)
+    if (error || !publicationStored){
       return res
         .status(400)
         .send({ status: "error", message: "No se ha guardado la publicación" });
-
+    }
     return res.status(200).send({
       status: "success",
       message: "Publicación guardada",

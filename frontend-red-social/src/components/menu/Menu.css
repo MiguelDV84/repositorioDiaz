@@ -1,50 +1,33 @@
 .menu {
   position: fixed; /* Se establece la posición fija */
   bottom: 0; /* Se fija en la parte inferior de la página */
-  left: 0; /* Se alinea a la izquierda de la pantalla */
-  right: 0; /* Se alinea a la derecha de la pantalla */
+  width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
   background-color: #f5f5f5;
-  padding: 10px;
   border-radius: 10px;
+  
 }
-/* Estilos para los elementos "menu__item" */
+
 .menu__item {
-  margin: 0 10px;
   list-style: none;
   display: inline-block;
+  justify-content: center;
+  color: black;
+  margin: 4px;
 }
 
-/* Estilos para los elementos "menu__item--home" */
-.menu__item--home {
-  color: #333;
-  font-weight: bold;
+.menu__item svg {
+  height: 48px;
+  width: 48px;
 }
 
-/* Estilos para los elementos "menu__item--perfil" */
-.menu__item--perfil {
-  color: #333;
-}
-
-/* Estilos para los elementos "menu__item--feed" */
-.menu__item--feed {
-  color: #333;
-}
-
-/* Estilos para los elementos "menu__item--logout" */
-.menu__item--logout {
-  color: #333;
-}
-
-/* Estilos para los enlaces dentro de los elementos "menu__item" */
 .menu__item a {
   text-decoration: none;
-  color: inherit;
 }
 
-/* Estilos para el enlace activo */
-.menu__item a.active {
-  color: #007bff;
-  font-weight: bold;
+.menu__item a:link, a:visited, a:active {
+  text-decoration: none;
+  color: black;
 }
