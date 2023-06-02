@@ -4,9 +4,13 @@ import Login from "./components/login/login";
 import Feed from "./components/feed/Feed";
 import Menu from "./components/menu/Menu";
 import Perfil from "./components/perfil/Perfil";
-import Followings from "./components/Followings/Followings";
-import "./App.css";
+import Followings from "./components/perfil/Followings/Followings";
+import Followers from "./components/perfil/Followers/Followers";
+import Upload from "./components/Upload/Upload";
+
 import ProtectedRoute from "./components/utils/ProtectedRoute";
+
+import "./App.css";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -24,6 +28,8 @@ function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/seguidos" element={<Followings />} />
+          <Route path="/seguidores" element={<Followers />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </div>
     </Router>
