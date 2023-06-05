@@ -20,7 +20,7 @@ const save = (req, res) => {
   // Recoger datos de la request
   const params = req.body;
 
-  // Si no llega dar respuesta negativa
+  // Si no llega, dar respuesta negativa
   if (!params.text)
     return res
       .status(400)
@@ -28,18 +28,32 @@ const save = (req, res) => {
 
   // Crear objeto con modelo publication
   let newPublication = new Publication(params);
-  console.log(req.params.id)
+  console.log(req.params.id);
   newPublication.user = req.params.id;
 
   // Verificar si se adjuntó un archivo
   if (req.file) {
-    newPublication.file = req.file.filename;
+    const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+    const fileExtension = req.file.filename
+      .toLowerCase()
+      .substring(req.file.filename.lastIndexOf("."));
+
+    if (allowedExtensions.includes(fileExtension)) {
+      newPublication.file = req.file.filename;
+    } else {
+      return res
+        .status(400)
+        .send({
+          status: "error",
+          message: "El archivo adjunto no es una imagen válida",
+        });
+    }
   }
 
   // Guardar el objeto en la base de datos
   newPublication.save((error, publicationStored) => {
-    console.log(error)
-    if (error || !publicationStored){
+    console.log(error);
+    if (error || !publicationStored) {
       return res
         .status(400)
         .send({ status: "error", message: "No se ha guardado la publicación" });
@@ -51,7 +65,6 @@ const save = (req, res) => {
     });
   });
 };
-
 
 //Sacar una publicacion
 const getPubli = (req, res) => {
@@ -216,17 +229,22 @@ const feed = async (req, res) => {
       .populate("user", "-password -role -__v -email")
       .sort("-created_at")
       .paginate(page, itemsPerPage, (error, publications, total) => {
-
-        if(error || !publications) return res.status(404).send({status: "error", message: "No hay publicaciones para mostrar"})
-      return res.status(200).send({
-        status: "success",
-        message: "Lista de publicaciones FEED",
-        total,
-        page,
-        pages: Math.ceil(total / itemsPerPage),
-        publications,
+        if (error || !publications)
+          return res
+            .status(404)
+            .send({
+              status: "error",
+              message: "No hay publicaciones para mostrar",
+            });
+        return res.status(200).send({
+          status: "success",
+          message: "Lista de publicaciones FEED",
+          total,
+          page,
+          pages: Math.ceil(total / itemsPerPage),
+          publications,
+        });
       });
-    });
   } catch (error) {
     return res
       .status(500)

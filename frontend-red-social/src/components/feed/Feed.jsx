@@ -10,7 +10,7 @@ import "./Feed.css";
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState();
-  const API = "http://localhost:3001/api/publi/feed";
+  const API = "http://localhost:3001/api/post/feed";
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {

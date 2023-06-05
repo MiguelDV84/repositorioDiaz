@@ -14,8 +14,11 @@ import "./App.css";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
 
   useEffect(() => {
+    console.log(user?.id)
     setToken(localStorage.getItem("token"));
   }, [token]);
 
@@ -29,7 +32,7 @@ function App() {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/seguidos" element={<Followings />} />
           <Route path="/seguidores" element={<Followers />} />
-          <Route path="/upload" element={<Upload />} />
+          <Route path="/upload" element={<Upload userId={user?.id} />} />
         </Routes>
       </div>
     </Router>
