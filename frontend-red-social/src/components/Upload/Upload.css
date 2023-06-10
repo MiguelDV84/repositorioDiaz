@@ -6,25 +6,29 @@
   gap: 1rem;
 }
 
-.form__publi--continer--description input[type="file"] {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+.form__publi--continer--file {
+ position: relative;
+ display: inline-block;  
 }
 
-.form__publi--continer--description label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #106ba0;
+.form__publi--continer--file::before{
+  background-color: #5678EF;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  content: 'Seleccionar'; /* testo por defecto */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.form__publi--continer--file input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
   display: inline-block;
-  transition: all 0.5s;
-  cursor: pointer;
-  padding: 15px 40px !important;
-  text-transform: uppercase;
-  width: fit-content;
-  text-align: center;
 }

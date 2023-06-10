@@ -63,8 +63,7 @@ export default function Upload({ userId }) {
         />
         {errors.texto?.type === "required" && (<span>{errors.texto.message}</span>)}
       </div>
-      <div className={"form__publi--continer--description"}>
-        <label>Imagen:</label>
+      <div className={"form__publi--continer--file"}>
         <input
           type="file"
           {...register("imagen", { required: "Debes selecionar una imagen" })}
