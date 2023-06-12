@@ -1,13 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 
-export const TokenContext = createContext(null);
+const SearchContext = createContext(null);
 
-export const TokenProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
-
-  return (
-    <TokenContext.Provider value={{ token, setToken }}>
-      {children}
-    </TokenContext.Provider>
-  );
-};
+export default SearchContext;

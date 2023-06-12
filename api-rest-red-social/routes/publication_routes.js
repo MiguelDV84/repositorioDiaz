@@ -22,7 +22,7 @@ const uploads = multer({storage: storage});
 
 router.get("/test-publication", PublicationController.testPubli);
 router.post("/save/:id", [auth, uploads.single("file")], PublicationController.save); // Privado
-router.get("/detail/:id", auth, PublicationController.getPubli);//Privado
+router.get("/get/:id", auth, PublicationController.getPubli);//Privado
 router.delete("/delete/:id", auth, PublicationController.remove);//Privado
 router.get("/user/:id/:page?",auth, PublicationController.getPublicationsUser);//Privado
 router.get("/media/:fileName", PublicationController.media)//Publico

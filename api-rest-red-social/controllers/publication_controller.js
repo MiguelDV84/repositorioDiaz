@@ -79,7 +79,7 @@ const getPubli = (req, res) => {
       });
     return res.status(200).send({
       status: "success",
-      message: "Publicación guardada",
+      message: "Publicación encontrada",
       publication: publicationStored,
     });
   });
@@ -105,34 +105,40 @@ const remove = (req, res) => {
 };
 
 //Listar publicaciones de un usuario
-const getPublicationsUser = (req, res) => {
-  //Recoger id del usuario
-  const userId = req.params.id;
+const getPublicationsUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const page = req.params.page || 1;
+    const itemsPerPage = 10; // Cantidad de publicaciones por página
 
-  //Controlar pagina
-  let page = 1;
-  if (req.params.page) page = req.params.page;
-  const itemsPerPage = 5;
+    const publications = await Publication.find({ user: userId })
+      .sort({ created_at: -1 })
+      .skip((page - 1) * itemsPerPage)
+      .limit(itemsPerPage)
+      .populate('user', 'nick created_at image');
 
-  //Find, populate, paginar y ordenar
-  Publication.find({ user: userId })
-    .sort("-created_at")
-    .populate("user", "nick created_at image -email")
-    .paginate(page, itemsPerPage, (error, publications, total) => {
-      if (error || publications.length <= 0)
-        return res.status(404).send({
-          status: "error",
-          message: "No hay publicaciones para mostrar",
-        });
-      return res.status(200).send({
-        status: "success",
-        message: "publicaciones de un perfil ",
-        page,
-        total,
-        pages: Math.ceil(total / itemsPerPage),
-        publications,
+    if (publications.length === 0) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'No hay publicaciones para mostrar',
       });
+    }
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'Publicaciones de un perfil',
+      page,
+      total: publications.length,
+      pages: Math.ceil(publications.length / itemsPerPage),
+      publications,
     });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Error al obtener las publicaciones del usuario',
+    });
+  }
 };
 
 //Listar publicaciones de usuarios que sigo

@@ -87,7 +87,7 @@ const getFollowingUsers = (req, res) => {
 
   if (req.params.page) page = req.params.page;
   //Usuarios por pagina
-  const itemsPerPage = 5;
+  const itemsPerPage = 99;
 
   //Find a follow, popular datos de usuario y paginar con mongoose paginate
   Follow.find({ user: userId })
@@ -123,7 +123,7 @@ const getFollowedUsers = (req, res) => {
 
   if (req.params.page) page = req.params.page;
   //Usuarios por pagina
-  const itemsPerPage = 5;
+  const itemsPerPage = 99;
 
   Follow.find({ followed: userId })
     .populate("user", "-password -role -__v -email")

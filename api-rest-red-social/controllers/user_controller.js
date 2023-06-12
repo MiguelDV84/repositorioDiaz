@@ -386,6 +386,30 @@ const counters = async (req, res) => {
   }
 };
 
+const getUserByUsername = (req, res) => {
+  // Recibir el nombre de usuario
+  const username = req.params.username;
+
+  // Comprobar si el usuario existe
+  User.findOne({ nick: { $regex: new RegExp('^' + username + '$', 'i') } })
+    .select("-password -role -email -__v")
+    .exec((error, user) => {
+      if (error || !user) {
+        return res.status(404).send({
+          status: "error",
+          message: "El usuario no existe",
+        });
+      }
+
+      return res.status(200).send({
+        status: "success",
+        user: user,
+      });
+    });
+};
+
+
+
 //Exportar acciones
 module.exports = {
   testUser,
@@ -397,4 +421,5 @@ module.exports = {
   upload,
   avatar,
   counters,
+  getUserByUsername,
 };

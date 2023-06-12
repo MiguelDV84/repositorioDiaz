@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import ButtonPrimary from "../buttons/ButtonPrimary";
 import { useFetch } from "../../customHook/useFetch";
+import FooterMenu from './../menu/Menu'
 
 import "./Upload.css"
 
@@ -73,6 +74,7 @@ export default function Upload({ userId }) {
       </div>
       <ButtonPrimary text={"Enviar"} />
       {message != null && (<span>{message}</span>)}
+      <FooterMenu />
     </form>
   );
 }

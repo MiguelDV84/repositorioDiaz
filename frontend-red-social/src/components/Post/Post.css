@@ -1,0 +1,43 @@
+  .profile__header--user{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    gap: 17rem;
+  }
+  
+  .profile__section--user{
+    display: flex;
+    align-items: center;
+    gap: .5rem
+  }
+  
+  
+  .profile__container--image {
+    width: 100%;
+    max-width: 600px; /* Ajusta el tamaño máximo deseado para la imagen */
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  
+  .profile__container--image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .profile__image {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .profile__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  
+

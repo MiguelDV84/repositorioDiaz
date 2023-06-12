@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useFetch } from "../../../customHook/useFetch";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import FooterMenu from "./../../menu/Menu";
 import "./Followings.css";
 
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Header from "../../utils/Header/Header";
 import ButtonPrimary from "../../buttons/ButtonPrimary";
 import ImageUser from "../../utils/Image/ImageUser";
+import ProfileItem from "../../utils/ProfileItem/ProfileItem";
 
 export default function Followings() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -33,27 +34,28 @@ export default function Followings() {
 
   return (
     <div className="followings">
-      <div className="followings__header">
-          <ArrowBackIcon
-            onClick={() => navigate(-1)}
-            style={{ cursor: "pointer" }}
-          />
-          <span>Seguidos de {user?.nick}</span>
-      </div>
+      <Header text={`Seguidos de ${user?.nick}`} back={true} />
 
       <div className="followings__container--following">
         {followings?.map((following) => (
-          <div key={following.followed._id} className="following__item">
-            <div className="following__image">
-              <ImageUser imageName={following.followed.image} />
-            </div>
-
-            <span>{following.followed.nick}</span>
-
+          <div key={following.followed?._id} className="following__item">
+            <Link
+              to={`/perfil/${following.followed?._id}`}
+              onClick={() =>
+                localStorage.setItem("userId", following.followed?._id)
+              }
+            >
+              <ProfileItem
+                className={"following__image"}
+                image={following?.followed?.image}
+                nick={following?.followed?.nick}
+              />
+            </Link>
             <ButtonPrimary text={"Eliminar"} />
           </div>
         ))}
       </div>
+      <FooterMenu />
     </div>
   );
 }

@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useFetch } from "../../../customHook/useFetch";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Followers.css";
-
+import FooterMenu from "./../../menu/Menu";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ButtonPrimary from "../../buttons/ButtonPrimary";
 import ImageUser from "../../utils/Image/ImageUser";
+import Header from "../../utils/Header/Header";
+import ProfileItem from "../../utils/ProfileItem/ProfileItem";
 
-export default function Followings() {
+export default function Followers() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [token, setToken] = useState(localStorage.getItem("token"));
   const API = "http://localhost:3001/api";
@@ -32,28 +34,24 @@ export default function Followings() {
   console.log(followers[0].user.nick);
 
   return (
-    <div className="followings">
-      <div className="followings__header">
-          <ArrowBackIcon
-            onClick={() => navigate(-1)}
-            style={{ cursor: "pointer" }}
-          />
-          <span>Seguidores de {user?.nick}</span>
-      </div>
+    <div className="followers">
+      <Header text={`Seguidores de ${user?.nick}`} back={true} />
 
-      <div className="followings__container--following">
+      <div className="followers__container--followers">
         {followers?.map((follower) => (
-          <div key={follower.user._id} className="following__item">
-            <div className="following__image">
-              <ImageUser imageName={follower.user.image} />
-            </div>
-
-            <span>{follower.user.nick}</span>
-
-            <ButtonPrimary text={"Eliminar"} />
+          <div key={follower.user?._id} className="followers__item">
+            <Link to={`/perfil/${follower.user?._id}`}>
+              <ProfileItem
+                className="followers__image"
+                image={follower.user?.image}
+                nick={follower.user?.nick}
+                textButton="Eliminar"
+              />
+            </Link>
           </div>
         ))}
       </div>
+      <FooterMenu />
     </div>
   );
 }
