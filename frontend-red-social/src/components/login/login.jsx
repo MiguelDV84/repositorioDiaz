@@ -12,22 +12,7 @@ export default function Login() {
   const API = "http://localhost:3001/api/user/login";
   const navigate = useNavigate();
 
-/*   const { user, error } = useFetchLogin({ API, email, password });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // El custom hook se encarga de enviar la solicitud de inicio de sesión y gestionar el resultado
-
-    // Aquí puedes realizar acciones adicionales basadas en el resultado del inicio de sesión
-    if (user) {
-      // El usuario ha iniciado sesión correctamente
-      navigate("/feed");
-    } else if (error) {
-      // Ocurrió un error durante el inicio de sesión
-      setMessage(error);
-    }
-  }; */
 
 
   const handleSubmit = async (e) => {

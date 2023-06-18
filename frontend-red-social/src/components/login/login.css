@@ -12,7 +12,6 @@
   background-color: white;
 }
 
-
 .login__container-title {
   text-align: center;
   width: auto;
@@ -39,7 +38,7 @@
   border-radius: 5px;
 }
 
-.login__container-btn button{
+.login__container-btn button {
   background-color: #4567ff;
   color: white;
   border: none;
@@ -48,7 +47,7 @@
   cursor: pointer;
 }
 
-.login__container-btn button:hover{
+.login__container-btn button:hover {
   background-color: #00aeff;
 }
 
@@ -63,8 +62,14 @@
   border-radius: 5px;
 }
 
-.login__container-error{
+.login__container-error {
   color: red;
   font-size: 14px;
   font-weight: bold;
+}
+
+.login__container-form a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
 }

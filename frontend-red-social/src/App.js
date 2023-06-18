@@ -8,7 +8,6 @@ import Followings from "./components/perfil/Followings/Followings";
 import Followers from "./components/perfil/Followers/Followers";
 import Upload from "./components/Upload/Upload";
 
-import ProtectedRoute from "./components/utils/ProtectedRoute";
 import SearchContext from "./customHook/TokenContext"
 import "./App.css";
 import Post from "./components/Post/Post";

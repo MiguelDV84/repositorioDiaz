@@ -41,29 +41,29 @@ export default function Search() {
     navigate(`/perfil/${profileId}`);
   };
 
-const handleFollow = async () => {
-  const userIdFollow = searchResults?._id;
-  const userId = user?.id;
-  try {
-    const response = await axios.post(
-      `${API}/follow/save`,
-      { followed: userIdFollow, userId },
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
+  const handleFollow = async () => {
+    const userIdFollow = searchResults?._id;
+    const userId = user?.id;
+    try {
+      const response = await axios.post(
+        `${API}/follow/save`,
+        { followed: userIdFollow, userId },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <SearchContext.Provider value={searchResults?._id}>
-        <Header text={"Buscador"} back={true} />
+      <Header text={"Buscador"} back={true} />
+      <div className="search__container">
         <input
           name="develop"
           placeholder="Busca a un desarrollador..."
@@ -73,28 +73,29 @@ const handleFollow = async () => {
           onKeyUp={handleKeyPress}
         />
         <button onClick={handleSearch}>Buscar</button>
-        {searchResults && (
-          <div className="profiles__container">
-            <div className="profile__item">
-              <Link
-                to={`/perfil/${searchResults?._id}`}
-                onClick={() =>
-                  localStorage.setItem("userId", searchResults?._id)
-                }
-              >
-                <ProfileItem
-                  className={"profile__image"}
-                  image={searchResults?.image}
-                  nick={searchResults?.nick}
-                  onClick={() => handleProfileClick(searchResults?._id)}
-                />
-                <ButtonPrimary onClick={handleFollow} text={"Seguir"} />
-              </Link>
-            </div>
+      </div>
+      {searchResults && (
+        <div className="profiles__container">
+          <div className="profile__item">
+            <Link
+              to={`/perfil/${searchResults?._id}`}
+              onClick={() =>
+                localStorage.setItem("userId", searchResults?._id)
+              }
+            >
+              <ProfileItem
+                className={"profile__image"}
+                image={searchResults?.image}
+                nick={searchResults?.nick}
+                onClick={() => handleProfileClick(searchResults?._id)}
+              />
+              <ButtonPrimary onClick={handleFollow} text={"Seguir"} />
+            </Link>
           </div>
-        )}
+        </div>
+      )}
 
-        <FooterMenu />
+      <FooterMenu />
     </SearchContext.Provider>
   );
 }
