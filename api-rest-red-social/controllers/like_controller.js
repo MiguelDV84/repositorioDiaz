@@ -64,7 +64,6 @@ const dislike = (req, res) => {
     }
   );
 };
-
 const countLikes = (req, res) => {
   // Recoger ID de la publicación de la URL
   const publicationId = req.params.publicationId;
@@ -81,6 +80,7 @@ const countLikes = (req, res) => {
     return res.status(200).send({
       status: "success",
       count: likeCount,
+      publication: publicationId 
     });
   });
 };

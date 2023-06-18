@@ -213,23 +213,22 @@ const list = (req, res) => {
       });
     });
 };
-
 const update = (req, res) => {
-  //Recoger info del ausuario a actualizar
+  // Recoger info del usuario a actualizar
   const userIdentity = req.user;
   const user = req.body;
 
-  //Eliminar campos sobrantes
+  // Eliminar campos sobrantes
   delete user.iat;
   delete user.exp;
   delete user.role;
   delete user.image;
 
-  //Comprobar si existe el usuario
+  // Comprobar si existe el usuario
   User.find({
     $or: [
-      { email: user.email.toLowerCase() },
-      { nick: user.nick.toLowerCase() },
+      { email: user.email ? user.email.toLowerCase() : null },
+      { nick: user.nick ? user.nick.toLowerCase() : null },
     ],
   }).exec(async (err, users) => {
     if (err) {
@@ -238,9 +237,10 @@ const update = (req, res) => {
         message: "Error al comprobar duplicidad de usuarios",
       });
     }
+
     let userIsset = false;
-    users.forEach((user) => {
-      if (user && user._id != userIdentity.id) {
+    users.forEach((existingUser) => {
+      if (existingUser && existingUser._id != userIdentity.id) {
         userIsset = true;
       }
     });
@@ -251,8 +251,8 @@ const update = (req, res) => {
         message: "El usuario ya existe",
       });
     }
-    //Si me llega la password cifrarla
-    //Cifrar la contraseña
+
+    // Si me llega la contraseña, cifrarla
     if (user.password) {
       const pwd = await bcrypt.hash(user.password, 10);
       user.password = pwd;
@@ -260,25 +260,33 @@ const update = (req, res) => {
       delete user.password;
     }
 
+    // Actualizar solo los campos no vacíos
+    const updatedFields = {};
+    for (const field in user) {
+      if (user[field] !== "") {
+        updatedFields[field] = user[field];
+      }
+    }
+
     // Buscar y actualizar
     try {
       const userUpdated = await User.findByIdAndUpdate(
         { _id: userIdentity.id },
-        user,
-        {
-          new: true,
-        }
+        updatedFields,
+        { new: true }
       );
+
       if (!userUpdated) {
         return res.status(500).send({
           status: "error",
           message: "Error al actualizar el usuario",
         });
       }
-      //Devolver respuesta
+
+      // Devolver respuesta
       return res.status(200).send({
         status: "success",
-        message: "Metodo de actualizacion de usuario",
+        message: "Método de actualización de usuario",
         userUpdated,
       });
     } catch (error) {
@@ -341,15 +349,15 @@ const upload = (req, res) => {
 };
 
 const avatar = (req, res) => {
-  //Sacar el parametro de la url
-  const file = req.params.fileName;
+  // Obtener el nombre del archivo del formulario
+  const file = req.body.fileName;
 
-  //Montar el path real de la imagen
+  // Montar la ruta real de la imagen
   const filePath = "./uploads/avatars/" + file;
 
-  //Comprobar que existe
-  fs.stat(filePath, (error, exists) => {
-    if (!exists) {
+  // Comprobar si existe
+  fs.stat(filePath, (error, stats) => {
+    if (error || !stats.isFile()) {
       return res.status(404).send({
         status: "error",
         message: "La imagen no existe",

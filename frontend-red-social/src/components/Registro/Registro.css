@@ -1,0 +1,81 @@
+.register__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+.register__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.register__header img {
+  width: 50px;
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.register__header h1 {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.register__input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.register__input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.register__input::placeholder {
+  color: #999;
+}
+
+.register__input[type="password"] {
+  font-family: "Arial", sans-serif;
+}
+
+.register__button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.register__button:hover {
+  background-color: #0069d9;
+}
+
+.register__message {
+  margin-top: 10px;
+  color: #dc3545;
+  font-size: 14px;
+  text-align: center;
+}

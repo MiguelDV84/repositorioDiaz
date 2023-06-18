@@ -30,8 +30,7 @@ export default function Followers() {
     return <div>Cargando seguidores...</div>;
   }
 
-  const followers = follows.follows;
-  console.log(followers[0].user.nick);
+  const followers = follows?.follows;
 
   return (
     <div className="followers">

@@ -24,7 +24,7 @@ router.get("/profile/:id", auth, UserController.getUser);//Privado
 router.get("/list/:page?", auth, UserController.list);//Privado
 router.put("/update", auth, UserController.update);//Privado
 router.post("/upload-avatar",[auth, upload.single("file0")], UserController.upload);//Privado
-router.get("/avatar/:fileName", UserController.avatar);//Publico
+router.get("/avatar/", UserController.avatar);//Publico
 router.get("/counters/:id", auth, UserController.counters);//Privado
 router.get('/users/:username',auth, UserController.getUserByUsername);
 

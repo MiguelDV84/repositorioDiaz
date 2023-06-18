@@ -1,0 +1,74 @@
+.update-profile-form {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: 0 auto; /* Centrar horizontalmente */
+  margin-top: 100px; /* Ajustar la distancia desde la parte superior */
+}
+
+.update-profile-form h1 {
+  color: #62B4D2;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.update-profile-input-container {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.update-profile-input-container input {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #F3F3F3;
+  color: #62B4D2;
+  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.update-profile-input-container input::placeholder {
+  color: #62B4D2;
+}
+
+.update-profile-button {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #62B4D2;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-profile-button:hover {
+  background-color: #508fad;
+}
+
+/* Estilos para pantallas de escritorio */
+@media (min-width: 1024px) {
+  .update-profile-form {
+    max-width: 600px;
+  }
+
+  .update-profile-form h1 {
+    font-size: 28px;
+  }
+
+  .update-profile-input-container input {
+    font-size: 18px;
+  }
+
+  .update-profile-button {
+    font-size: 18px;
+    padding: 15px;
+  }
+}

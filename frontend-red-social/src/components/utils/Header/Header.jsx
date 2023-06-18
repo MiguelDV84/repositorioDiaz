@@ -1,5 +1,6 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
+import "./Header.css";
 
 export default function Header({ text, back }) {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Header({ text, back }) {
           style={{ cursor: "pointer" }}
         />
       )}
-      <span>{text}</span>
+      <span className="followings__header-text">{text}</span>
     </div>
   );
-};
+}

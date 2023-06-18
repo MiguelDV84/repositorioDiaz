@@ -1,12 +1,3 @@
-.followings__header{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #62B4D2;
-    border-bottom: 1px solid black;
-    font-weight: bold;
-    gap: 7rem;
-}
 
 .following__item {
     display: flex;

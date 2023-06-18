@@ -44,7 +44,7 @@ export default function Post() {
         },
       });
       console.log("Publicación eliminada");
-      navigate("/perfil");
+      navigate(`/perfil/${user?.id}`);
     } catch (error) {
       console.log("Error al borrar la publicación", error);
     }

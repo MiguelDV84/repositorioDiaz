@@ -1,18 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import ButtonPrimary from "../buttons/ButtonPrimary";
 import { useFetch } from "../../customHook/useFetch";
-import FooterMenu from './../menu/Menu'
+import FooterMenu from "./../menu/Menu";
+import TextField from "@mui/material/TextField";
+import Logo from "./../../assets/image/logo/logo-small.png";
+import "./Upload.css";
+import Header from "../utils/Header/Header";
 
-import "./Upload.css"
-
-export default function Upload({ userId }) {
+export default function Upload() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [text, setText] = useState();
   const [file, setFile] = useState();
@@ -34,7 +38,7 @@ export default function Upload({ userId }) {
     formData.append("file", file);
 
     axios
-      .post(`http://localhost:3001/api/post/save/${userId}`, formData, {
+      .post(`http://localhost:3001/api/post/save/${user.id}`, formData, {
         headers: {
           Authorization: token,
           "Content-Type": "multipart/form-data",
@@ -45,36 +49,72 @@ export default function Upload({ userId }) {
         setImage(response.data.publicationStored.file);
       })
       .catch((error) => {
-       console.log(error.response.data.message)
-       setMessage(error.response.data.message)
-       setError(error.response.data.status)
+        console.log(error);
+        setMessage(error.response.data.message);
+        setError(error.response.data.status);
       });
     console.log(data);
   };
 
-  
+  useEffect(() => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }, [file]);
 
   return (
-    <form className={"form__publi"} onSubmit={handleSubmit(onSubmit)}>
-      <div className={"form__publi--continer--description"}>
-        <label>Descripcion:</label>
-        <input
-          {...register("texto", { required: "Este campo es obligatorio" })}
-          onChange={handleTextChange}
-        />
-        {errors.texto?.type === "required" && (<span>{errors.texto.message}</span>)}
-      </div>
-      <div className={"form__publi--continer--file"}>
-        <input
-          type="file"
-          {...register("imagen", { required: "Debes selecionar una imagen" })}
-          onChange={handleFileChange}
-        />
-        {errors.imagen?.type === "required" && (<span>{errors.imagen.message}</span> )}
-      </div>
-      <ButtonPrimary text={"Enviar"} />
-      {message != null && (<span>{message}</span>)}
-      <FooterMenu />
-    </form>
+    <>
+      <Header text={`Subir publicacion`} back={true} />
+
+      <form className={"form__publi"} onSubmit={handleSubmit(onSubmit)}>
+        <div className="form__header">
+          <h1>Code<br/>GRAM</h1>
+        </div>
+        <div className={"form__publi--continer--description"}>
+          <input
+            placeholder="Escribe una descripción..."
+            {...register("texto", { required: "Este campo es obligatorio" })}
+            onChange={handleTextChange}
+          />
+          {errors.texto?.type === "required" && (
+            <span>{errors.texto.message}</span>
+          )}
+        </div>
+        <div
+          className={"form__publi--continer--file"}
+          style={{
+            height: "240px",
+            width: "240px",
+            backgroundColor: "lightblue",
+          }}
+        >
+          <div
+            className="file-button"
+            onClick={() => document.getElementById("file-input").click()}
+          >
+            <span>Elige una Imagen</span>
+            {image && <img src={image} alt="Vista previa de la imagen" />}
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            {...register("imagen", {
+              required: "Debes seleccionar una imagen",
+            })}
+            onChange={handleFileChange}
+          />
+          {errors.imagen?.type === "required" && (
+            <span>{errors.imagen.message}</span>
+          )}
+        </div>
+        <ButtonPrimary text={"Enviar"} />
+        {message != null && <span>{message}</span>}
+        <FooterMenu />
+      </form>
+    </>
   );
 }

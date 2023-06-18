@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../utils/Header/Header";
 import FooterMenu from "./../menu/Menu";
-import InputText from "@mui/material/Input";
 import axios from "axios";
 import ProfileItem from "../utils/ProfileItem/ProfileItem";
 import SearchContext from "./../../customHook/TokenContext";
@@ -42,31 +41,30 @@ export default function Search() {
     navigate(`/perfil/${profileId}`);
   };
 
-  const handleFollow = async () => {
-    const userIdFollow = searchResults?._id;
-    const userId = user?.id;
-    try {
-      const response = await axios.post(
-        `${API}/follow/save`,
-        { followed: userIdFollow, userId },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
+const handleFollow = async () => {
+  const userIdFollow = searchResults?._id;
+  const userId = user?.id;
+  try {
+    const response = await axios.post(
+      `${API}/follow/save`,
+      { followed: userIdFollow, userId },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   return (
     <SearchContext.Provider value={searchResults?._id}>
-      <>
         <Header text={"Buscador"} back={true} />
-        <InputText
+        <input
           name="develop"
           placeholder="Busca a un desarrollador..."
           color={"primary"}
@@ -97,7 +95,6 @@ export default function Search() {
         )}
 
         <FooterMenu />
-      </>
     </SearchContext.Provider>
   );
 }

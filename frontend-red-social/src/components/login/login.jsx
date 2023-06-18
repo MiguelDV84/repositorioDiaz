@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
 import axios from "axios";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
@@ -80,6 +81,7 @@ export default function Login() {
         <div className="login__container-btn">
           <button>Login</button>
         </div>
+        <Link to={"/register"}>Ir a Registro</Link>
       </form>
     </div>
   );

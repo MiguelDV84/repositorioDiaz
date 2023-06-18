@@ -1,0 +1,13 @@
+.followings__header {
+    display: flex;
+    align-items: center;
+    background-color: #62b4d2;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+  }
+  
+  .followings__header-text {
+    flex-grow: 1;
+    text-align: center;
+  }
+  

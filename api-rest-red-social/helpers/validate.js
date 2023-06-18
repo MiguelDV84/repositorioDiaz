@@ -17,9 +17,8 @@ const validate = (params) => {
     !validator.isEmpty(params.email) && 
     validator.isEmail(params.email);
   let validatePassword = !validator.isEmpty(params.password);
-  let validateBio = validator.isLength(params.bio, {min: undefined, max: 255});
 
-  if (!validateName || !validateSurname || !validateNick || !validateEmail ||!validatePassword || !validateBio) {
+  if (!validateName || !validateSurname || !validateNick || !validateEmail ||!validatePassword ) {
     throw new Error("El nombre no es válido");
   } else {
     console.log("El nombre es válido");

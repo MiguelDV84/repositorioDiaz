@@ -29,8 +29,7 @@ export default function Followings() {
     return <div>Cargando seguidos...</div>;
   }
 
-  const followings = follows.follows;
-  console.log(followings[0].followed);
+  const followings = follows?.follows;
 
   return (
     <div className="followings">

@@ -13,6 +13,8 @@ import SearchContext from "./customHook/TokenContext"
 import "./App.css";
 import Post from "./components/Post/Post";
 import Search from "./components/Search/Search";
+import Registro from "./components/Registro/Registro";
+import EditPerfil from "./components/perfil/EditPerfil/EditPerfil";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -33,9 +35,13 @@ function App() {
           <Route path="/perfil/:id" element={<Perfil userProp={user} />} />
           <Route path="/seguidos" element={<Followings />} />
           <Route path="/seguidores" element={<Followers />} />
-          <Route path="/upload" element={<Upload userId={searchResultsId} />} />
+          <Route path="/upload" element={<Upload />} />
           <Route path="/post" element={<Post />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/register" element={<Registro />} />
+          <Route path="/edit-profile" element={<EditPerfil />} />
+
+
         </Routes>
       </div>
     </Router>
